@@ -101,7 +101,7 @@ public class CommentServlet extends HttpServlet {
                 return;
             }
 
-            // DEBUG: Log extracted values before database insertion
+          
             System.out.println("DEBUG - CommentServlet doPost: Extracted values - postId: " + postId + ", userId: " + userId + ", content: '" + content + "', parentCommentId: " + parentCommentId);
 
             // Database insertion
@@ -123,9 +123,9 @@ public class CommentServlet extends HttpServlet {
                     ResultSet generatedKeys = stmt.getGeneratedKeys();
                     int commentId = -1;
                     if (generatedKeys.next()) {
-                        commentId = generatedKeys.getInt(1); // Get the auto-generated ID
+                        commentId = generatedKeys.getInt(1); 
                     }
-                    // Respond with success message and new comment ID
+                    
                     out.print("{\"message\":\"Comment created successfully\", \"commentId\":" + commentId + "}");
                 } else {
                     // If no rows were affected, insertion failed
@@ -150,8 +150,7 @@ public class CommentServlet extends HttpServlet {
         }
     }
 
-    // Handles GET requests to retrieve comments for a specific post
-    // Expected URL parameter: /api/comments?postId=123
+   
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
