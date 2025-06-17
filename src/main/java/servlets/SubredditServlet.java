@@ -37,18 +37,20 @@ public class SubredditServlet extends HttpServlet {
             JSONObject jsonObject = new JSONObject(body);
             String name = jsonObject.getString("name");
             String description = jsonObject.getString("description");
-            
+            String created_by=jsonObject.getString("created_by");
             try (Connection conn = DButil.getConnection()) {
-                String sql = "INSERT INTO subreddits (name, description) VALUES (?, ?)";
+                String sql = "INSERT INTO subreddits (name, description,created_by) VALUES (?, ?,?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, name);
                 stmt.setString(2, description);
+                stmt.setInt(3,Integer.parseInt(created_by));
                 int rows = stmt.executeUpdate();
                 
                 if (rows > 0) {
                     JSONObject response = new JSONObject();
                     response.put("message", "Subreddit created successfully");
                     out.print(response.toString());
+                    System.out.println(response.toString());
                 } else {
                     JSONObject errorResponse = new JSONObject();
                     errorResponse.put("error", "Failed to create subreddit");

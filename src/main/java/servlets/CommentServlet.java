@@ -12,12 +12,6 @@ import java.util.HashMap;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import utils.DButil; 
-
-@MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
-    maxFileSize = 1024 * 1024 * 10,      // 10MB
-    maxRequestSize = 1024 * 1024 * 50    // 50MB
-)
 public class CommentServlet extends HttpServlet {
     
     /*@Override
@@ -56,7 +50,7 @@ public class CommentServlet extends HttpServlet {
             // Validate and extract required fields
             if (!jsonObject.has("postId") || jsonObject.isNull("postId")) {
                 res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                out.print("{\"error\":\"Missing 'postId' field in request.\"}");
+               out.print("{\"error\":\"Missing 'postId' field in request.\"}");
                 return;
             }
             if (!jsonObject.has("userId") || jsonObject.isNull("userId")) {
@@ -78,16 +72,15 @@ public class CommentServlet extends HttpServlet {
             if (jsonObject.has("parentCommentId") && !jsonObject.isNull("parentCommentId")) {
                 parentCommentId = jsonObject.getInt("parentCommentId");
             }
-
             // Additional validation for extracted values
             if (postId <= 0) {
                 res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                out.print("{\"error\":\"Invalid postId: must be a positive integer.\"}");
+               out.print("{\"error\":\"Invalid postId: must be a positive integer.\"}");
                 return;
             }
             if (userId <= 0) {
                 res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                out.print("{\"error\":\"Invalid userId: must be a positive integer.\"}");
+               out.print("{\"error\":\"Invalid userId: must be a positive integer.\"}");
                 return;
             }
             if (content == null || content.trim().isEmpty()) {
@@ -127,7 +120,7 @@ public class CommentServlet extends HttpServlet {
                 } else {
                     // If no rows were affected, insertion failed
                     res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                    out.print("{\"error\":\"Failed to insert comment into database.\"}");
+                   out.print("{\"error\":\"Failed to insert comment into database.\"}");
                 }
             } catch (SQLException e) {
                 // Handle SQL errors during insertion
@@ -135,7 +128,7 @@ public class CommentServlet extends HttpServlet {
                 res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 JSONObject errorResponse = new JSONObject();
                 errorResponse.put("error", "Database error: " + e.getMessage());
-                out.print(errorResponse.toString());
+               // out.print(errorResponse.toString());
             }
 
         } catch (Exception e) {
@@ -160,7 +153,7 @@ public class CommentServlet extends HttpServlet {
         // Validate postId parameter
         if (postIdParam == null || postIdParam.trim().isEmpty()) {
             res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            out.print("{\"error\":\"Missing postId parameter.\"}");
+           out.print("{\"error\":\"Missing postId parameter.\"}");
             return;
         }
 
@@ -217,7 +210,6 @@ public class CommentServlet extends HttpServlet {
                     topLevelComments.add(commentJson);
                 }
             }
-
             // Second pass: Build the nested tree structure
             for (JSONObject comment : allCommentsMap.values()) {
                 // Only process comments that have a parent_comment_id (i.e., are replies)
@@ -238,7 +230,7 @@ public class CommentServlet extends HttpServlet {
             }
             
             // Send the final JSON response
-            out.print(finalCommentsArray.toString());
+           out.print(finalCommentsArray.toString());
 
         } catch (NumberFormatException e) {
             res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -254,7 +246,7 @@ public class CommentServlet extends HttpServlet {
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             JSONObject errorResponse = new JSONObject();
             errorResponse.put("error", "An unexpected error occurred: " + e.getMessage());
-            out.print(errorResponse.toString());
+           out.print(errorResponse.toString());
         }
     }
 }

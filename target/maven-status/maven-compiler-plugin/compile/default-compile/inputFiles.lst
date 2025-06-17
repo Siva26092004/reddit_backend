@@ -5,6 +5,7 @@ D:\reddit-zoho\reddit_server\src\main\java\servlets\LoginServlet.java
 D:\reddit-zoho\reddit_server\src\main\java\servlets\PostServlet.java
 D:\reddit-zoho\reddit_server\src\main\java\servlets\RegisterServlet.java
 D:\reddit-zoho\reddit_server\src\main\java\servlets\SubredditServlet.java
+D:\reddit-zoho\reddit_server\src\main\java\servlets\UserServlet.java
 D:\reddit-zoho\reddit_server\src\main\java\servlets\VoteServlet.java
 D:\reddit-zoho\reddit_server\src\main\java\Test.java
 D:\reddit-zoho\reddit_server\src\main\java\utils\DButil.java

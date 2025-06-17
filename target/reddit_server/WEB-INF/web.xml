@@ -51,8 +51,14 @@
         <servlet-name>CommentServlet</servlet-name>
         <url-pattern>/api/comments</url-pattern>
     </servlet-mapping>
-
-<!-- New VoteServlet mapping -->
+    <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>servlets.UserServlet</servlet-class></servlet>
+    <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/api/users/*</url-pattern>
+    </servlet-mapping>
+    <!-- New VoteServlet mapping -->
 <servlet>
     <servlet-name>VoteServlet</servlet-name>
     <servlet-class>servlets.VoteServlet</servlet-class>

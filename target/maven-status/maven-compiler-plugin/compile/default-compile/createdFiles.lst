@@ -3,6 +3,7 @@ listeners\CleanupListener.class
 servlets\LoginServlet.class
 filters\CORSFilter.class
 servlets\RegisterServlet.class
+servlets\UserServlet.class
 Test.class
 servlets\CommentServlet.class
 servlets\SubredditServlet.class
