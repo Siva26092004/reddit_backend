@@ -13,19 +13,19 @@ import org.json.JSONObject;
 
 public class RegisterServlet extends HttpServlet {
     
-    @Override
+   /*  @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         res.setHeader("Access-Control-Allow-Origin","http://localhost:4200");
         res.setHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
         res.setHeader("Access-Control-Allow-Headers","Content-Type, Accept");
         res.setStatus(HttpServletResponse.SC_OK);
-    }
+    }*/
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        res.setHeader("Access-Control-Allow-Origin","http://localhost:4200");
-        res.setHeader("Access-Control-Allow-Headers","Content-Type");
-        res.setHeader("Access-Control-Allow-Methods","POST");
+      //  res.setHeader("Access-Control-Allow-Origin","http://localhost:4200");
+       // res.setHeader("Access-Control-Allow-Headers","Content-Type");
+       // res.setHeader("Access-Control-Allow-Methods","POST");
         res.setContentType("application/json");
         
         BufferedReader reader = req.getReader();
@@ -97,7 +97,7 @@ public class RegisterServlet extends HttpServlet {
                         userId = generatedKeys.getInt(1);
                     }
                     
-                    // Create user object for response
+                  
                     JSONObject userObj = new JSONObject();
                     userObj.put("id", userId);
                     userObj.put("username", username);
@@ -107,7 +107,7 @@ public class RegisterServlet extends HttpServlet {
                         userObj.put("email", username + "@example.com");
                     }
                     
-                    // Create response object
+                   
                     JSONObject response = new JSONObject();
                     response.put("message", "Registration successful");
                     response.put("user", userObj);
@@ -141,9 +141,7 @@ public class RegisterServlet extends HttpServlet {
         }
     }
     
-    /**
-     * Generates a random salt for password hashing
-     */
+   // salt generation
     public static String generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -151,9 +149,8 @@ public class RegisterServlet extends HttpServlet {
         return Base64.getEncoder().encodeToString(salt);
     }
     
-    /**
-     * Hashes a password with the given salt using SHA-256
-     */
+    
+    // Hashes a password with the given salt using SHA-256
     public static String hashPassword(String password, String salt) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

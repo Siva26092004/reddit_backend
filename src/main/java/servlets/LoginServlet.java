@@ -12,18 +12,18 @@ import org.json.JSONObject;
 import utils.DButil;
 
 public class LoginServlet extends HttpServlet {
-    @Override
+   /* @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         res.setHeader("Access-Control-Allow-Origin","http://localhost:4200");
         res.setHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS");
         res.setHeader("Access-Control-Allow-Headers","Content-Type");
         res.setStatus(HttpServletResponse.SC_OK);
-    }
+    }*/
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        res.setHeader("Access-Control-Allow-Origin","http://localhost:4200");
-        res.setHeader("Access-Control-Allow-Methods","POST");
-        res.setHeader("Access-Control-Allow-Headers","Content-Type");
+      //  res.setHeader("Access-Control-Allow-Origin","http://localhost:4200");
+      //  res.setHeader("Access-Control-Allow-Methods","POST");
+      //  res.setHeader("Access-Control-Allow-Headers","Content-Type");
         res.setContentType("application/json");
         BufferedReader reader = req.getReader();
         StringBuilder jsonBody = new StringBuilder();

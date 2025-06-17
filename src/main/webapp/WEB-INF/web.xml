@@ -31,7 +31,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SubredditServlet</servlet-name>
-        <url-pattern>/api/subreddits</url-pattern>
+        <url-pattern>/api/subreddits/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
